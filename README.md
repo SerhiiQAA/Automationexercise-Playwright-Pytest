@@ -55,21 +55,15 @@ After each CI run, a notification is sent to a configured Slack channel with the
 To configure Slack integration:
 
     1. Create a Slack App and enable Incoming Webhooks.
-
     2. Add a webhook URL to your Slack channel.
-
     3. Save the webhook URL as a GitHub Actions Secret with the name ACTION_MONITORING_SLACK.
 
 The Slack message includes:
 
     - Repository name
-
     - Workflow and job name
-
     - Test status (✅ success / ❌ failure)
-
     - Run number
-
     - Link to the latest published Allure report
 
 ## 📝License
