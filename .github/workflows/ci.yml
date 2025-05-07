@@ -18,7 +18,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9  
+          python-version: 3.9  # Використовуємо правильну версію Python
 
       - name: Install Node.js and Python dependencies
         run: |
@@ -26,15 +26,19 @@ jobs:
           curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
           sudo apt-get install -y nodejs
 
-          # Set up Python dependencies
+          # Створюємо віртуальне середовище
           python -m venv venv
+          
+          # Активуємо віртуальне середовище
           source venv/bin/activate
-          pip install -r requirements.txt  # Тепер працює з requirements.txt
 
-          # Install Playwright
+          # Встановлюємо Python залежності
+          pip install -r requirements.txt
+
+          # Встановлюємо Playwright
           python -m playwright install
 
-          # Install Node.js dependencies
+          # Встановлюємо Node.js залежності
           npm install
 
   run_tests:
@@ -47,22 +51,17 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9  
+          python-version: 3.9  # Використовуємо правильну версію Python
 
       - name: Install Node.js and Python dependencies
         run: |
-          source venv/bin/activate
-          pip install -r requirements.txt  # Make sure you have requirements.txt
-          npm install  # Install Node.js dependencies
+          source venv/bin/activate  # Активуємо віртуальне середовище
+          pip install -r requirements.txt  # Переконайтесь, що у вас є requirements.txt
+          npm install  # Встановлюємо Node.js залежності
 
       - name: Run Playwright tests with Pytest and generate HTML report
         run: |
-          npm run test_report  # Run the tests and generate the HTML report
-
-      - name: Check the generated report
-        run: |
-          ls -l  # Показує вміст директорії після виконання тестів
-          cat report.html  # Перевірка чи звіт справно створений
+          npm run test_report  # Запускаємо тести і генеруємо HTML звіт
 
   deploy_to_pages:
     needs: run_tests
@@ -75,6 +74,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Directory containing the report.html
+          publish_dir: ./  # Директорія, що містить report.html
           publish_branch: gh-pages
-
