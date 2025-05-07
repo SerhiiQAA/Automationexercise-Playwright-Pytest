@@ -1,0 +1,32 @@
+# Python
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+.env/
+.venv/
+
+# pytest
+*.xml
+*.log
+nosetests.xml
+coverage.xml
+*.cover
+*.hypothesis/
+
+# Playwright
+/selenium-chrome-driver/
+playwright-report/
+*.trace
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Operating system files
+.DS_Store
+Thumbs.db
