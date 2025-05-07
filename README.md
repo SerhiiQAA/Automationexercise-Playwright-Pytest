@@ -2,14 +2,14 @@
 
 This project uses Playwright and Pytest for automating tests on the web application **automationexercise.com**.
 
-## 📄Description
+## 📄 Description
 
 This project automates testing for a web application using **Playwright** to control the browser and **Pytest** to execute tests.  
 Tests can be run in headless mode using Python and Playwright, and results can be generated in both **HTML format** (for local viewing) and **Allure Report** (for more detailed insights).  
 Additionally, this project includes integration with **Slack** to receive notifications about CI test results.
 
 
-## ⚙️Installation
+## ⚙️ Installation
 
 1. Clone this repository:
    ```bash
@@ -26,7 +26,7 @@ Additionally, this project includes integration with **Slack** to receive notifi
     ```bash
     pip install -r requirements.txt
 
-## 🚀Running Tests
+## 🚀 Running Tests
 - Running tests in headless mode:
     ```bash
     npm run test
@@ -47,7 +47,7 @@ Additionally, this project includes integration with **Slack** to receive notifi
     ```bash
     npm run test_report
 
-## 🏃‍♂️Continuous Integration (CI) and Slack Notifications
+## 🏃‍♂️ Continuous Integration (CI) and Slack Notifications
 
 This project uses GitHub Actions to run tests automatically on every push or pull request to the master branch.
 After each CI run, a notification is sent to a configured Slack channel with the status of the run (success or failure) and a link to the published Allure report via GitHub Pages.
@@ -66,6 +66,6 @@ The Slack message includes:
 - Run number
 - Link to the latest published Allure report
 
-## 📝License
+## 📝 License
 
 This project is licensed under the ISC License.
