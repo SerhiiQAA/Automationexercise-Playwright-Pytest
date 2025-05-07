@@ -29,7 +29,7 @@ jobs:
           # Set up Python dependencies
           python -m venv venv
           source venv/bin/activate
-          pip install -r requirements.txt
+          pip install -r requirements.txt  # Тепер працює з requirements.txt
 
           # Install Playwright
           python -m playwright install
@@ -59,6 +59,11 @@ jobs:
         run: |
           npm run test_report  # Run the tests and generate the HTML report
 
+      - name: Check the generated report
+        run: |
+          ls -l  # Показує вміст директорії після виконання тестів
+          cat report.html  # Перевірка чи звіт справно створений
+
   deploy_to_pages:
     needs: run_tests
     runs-on: ubuntu-latest
@@ -72,3 +77,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./  # Directory containing the report.html
           publish_branch: gh-pages
+
