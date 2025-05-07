@@ -8,7 +8,10 @@
   },
   "scripts": {
     "test": "pytest",
-    "test_report": "pytest --html=report.html --css=dark-theme.css --self-contained-html"
+    "test_report": "pytest --html=report.html --css=dark-theme.css --self-contained-html",
+    "test_allure": "pytest --alluredir=allure-results",
+    "report_allure": "allure generate allure-results -o allure-report --clean && xdg-open allure-report/index.html",
+    "serve_allure": "allure serve allure-results"
   },
   "keywords": [],
   "author": "",

@@ -1,4 +1,4 @@
-name: CI Pipeline for Playwright and Pytest
+name: CI Pipeline with Allure Report
 
 on:
   push:
@@ -11,6 +11,7 @@ on:
 jobs:
   test_and_deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -27,26 +28,34 @@ jobs:
 
       - name: Install Python and Node.js dependencies
         run: |
-          pip install pytest pytest-playwright pytest-html pytest-base-url faker
+          pip install pytest pytest-playwright pytest-base-url allure-pytest faker
           python -m playwright install
           npm install
 
-      - name: Run Playwright tests with Pytest and generate HTML report
+      - name: Run Pytest and collect Allure results
         run: |
-          npm run test_report
+          pytest --alluredir=allure-results
 
-      - name: Copy report and assets to publish folder
+      - name: Install Allure CLI
         run: |
-          mkdir gh-pages-report
-          cp report.html gh-pages-report/index.html
-          cp dark-theme.css gh-pages-report/
+          sudo apt update
+          sudo apt install -y default-jre wget unzip
+          wget https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.zip
+          unzip allure-2.27.0.zip
+          sudo mv allure-2.27.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/bin/allure
+
+      - name: Generate Allure HTML report
+        run: |
+          allure generate allure-results -o docs --clean
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: gh-pages-report
+          publish_dir: docs
           publish_branch: gh-pages
+
 
 
 
@@ -54,7 +63,7 @@ jobs:
 # name: CI Pipeline for Playwright and Pytest
 
 # on:
-#   push:
+  # push:
 #     branches:
 #       - master
 #   pull_request:
@@ -62,9 +71,8 @@ jobs:
 #       - master
 
 # jobs:
-#   run_tests:
+#   test_and_deploy:
 #     runs-on: ubuntu-latest
-
 #     steps:
 #       - name: Checkout code
 #         uses: actions/checkout@v2
@@ -72,28 +80,32 @@ jobs:
 #       - name: Set up Python
 #         uses: actions/setup-python@v2
 #         with:
-#           python-version: 3.9
+#           python-version: '3.10'
 
 #       - name: Set up Node.js
 #         uses: actions/setup-node@v3
 #         with:
-#           node-version: 16
+#           node-version: '16'
 
-#       - name: Install Python dependencies
+#       - name: Install Python and Node.js dependencies
 #         run: |
-#           pip install pytest pytest-playwright pytest-html faker
+#           pip install pytest pytest-playwright pytest-html pytest-base-url faker
 #           python -m playwright install
+#           npm install
 
-#       - name: Install Node.js dependencies
-#         run: npm install
+#       - name: Run Playwright tests with Pytest and generate HTML report
+#         run: |
+#           npm run test_report
 
-#       - name: Run tests and generate HTML report
-#         run: npm run test_report
+#       - name: Copy report and assets to publish folder
+#         run: |
+#           mkdir gh-pages-report
+#           cp report.html gh-pages-report/index.html
+#           cp dark-theme.css gh-pages-report/
 
-#       - name: Deploy report.html to GitHub Pages
+#       - name: Deploy to GitHub Pages
 #         uses: peaceiris/actions-gh-pages@v3
 #         with:
 #           github_token: ${{ secrets.GITHUB_TOKEN }}
-#           publish_dir: ./
+#           publish_dir: gh-pages-report
 #           publish_branch: gh-pages
-#           keep_files: true
