@@ -38,7 +38,7 @@ jobs:
       - name: Copy report and assets to publish folder
         run: |
           mkdir gh-pages-report
-          cp report.html gh-pages-report/
+          cp report.html gh-pages-report/index.html
           cp dark-theme.css gh-pages-report/
 
       - name: Deploy to GitHub Pages
