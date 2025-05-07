@@ -12,17 +12,17 @@ body {
 
 h1, h2, h3, h4 {
     color: #ffffff;
-    font-size: 3em; 
+    font-size: 20px; 
 }
 
 table {
     border: 1px solid #ffffff;
-    font-size: 18px; 
+    font-size: 20px; 
 }
 
 table th, table td {
     color: #ffffff;
-    font-size: 18px; 
+    font-size: 20px; 
 }
 
 a {
