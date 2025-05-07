@@ -2,7 +2,7 @@
 
 body {
     background-color: #121212;
-    color: #ffffff;
+    color: #57e7ec;
     font-size: 18px; 
 }
 
@@ -11,7 +11,7 @@ body {
 }
 
 h1, h2, h3, h4 {
-    color: #ffffff;
+    color: #58f3e6;
     font-size: 20px; 
 }
 
@@ -21,7 +21,7 @@ table {
 }
 
 table th, table td {
-    color: #ffffff;
+    color: #46c8e9;
     font-size: 20px; 
 }
 
