@@ -28,7 +28,7 @@ jobs:
 
       - name: Install Python dependencies
         run: |
-          pip install pytest pytest-playwright pytest-html
+          pip install pytest pytest-playwright pytest-html faker
           python -m playwright install
 
       - name: Install Node.js dependencies
