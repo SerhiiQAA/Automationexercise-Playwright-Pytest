@@ -2,7 +2,7 @@
 
 body {
     background-color: #121212;
-    color: #b983d8;
+    color: #46c8e9;
     font-size: 18px; 
 }
 
@@ -11,12 +11,12 @@ body {
 }
 
 h1, h2, h3, h4 {
-    color: #dc85f1;
+    color: #46c8e9;
     font-size: 20px; 
 }
 
 table {
-    border: 1px solid #ffffff;
+    border: 1px solid #46c8e9;
     font-size: 20px; 
 }
 
@@ -26,7 +26,7 @@ table th, table td {
 }
 
 a {
-    color: #bb86fc;
+    color: #46c8e9;
     font-size: 18px;
 }
 
