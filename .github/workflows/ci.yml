@@ -9,8 +9,9 @@ on:
       - master
 
 jobs:
-  install_dependencies:
+  run_tests:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -18,61 +19,28 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9  # Використовуємо правильну версію Python
+          python-version: 3.9
 
-      - name: Install Node.js and Python dependencies
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Python dependencies
         run: |
-          # Set up Node.js
-          curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-          sudo apt-get install -y nodejs
-
-          # Створюємо віртуальне середовище
-          python -m venv venv
-          
-          # Активуємо віртуальне середовище
-          source venv/bin/activate
-
-          # Встановлюємо Python залежності
-          pip install -r requirements.txt
-
-          # Встановлюємо Playwright
+          pip install pytest pytest-playwright pytest-html
           python -m playwright install
 
-          # Встановлюємо Node.js залежності
-          npm install
+      - name: Install Node.js dependencies
+        run: npm install
 
-  run_tests:
-    needs: install_dependencies
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Run tests and generate HTML report
+        run: npm run test_report
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9  # Використовуємо правильну версію Python
-
-      - name: Install Node.js and Python dependencies
-        run: |
-          source venv/bin/activate  # Активуємо віртуальне середовище
-          pip install -r requirements.txt  # Переконайтесь, що у вас є requirements.txt
-          npm install  # Встановлюємо Node.js залежності
-
-      - name: Run Playwright tests with Pytest and generate HTML report
-        run: |
-          npm run test_report  # Запускаємо тести і генеруємо HTML звіт
-
-  deploy_to_pages:
-    needs: run_tests
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Deploy to GitHub Pages
+      - name: Deploy report.html to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  # Директорія, що містить report.html
+          publish_dir: ./
           publish_branch: gh-pages
+          keep_files: true
