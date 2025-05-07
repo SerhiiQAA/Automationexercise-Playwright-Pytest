@@ -31,3 +31,7 @@ This project automates testing for a web application using Playwright to control
 - Running tests in headless mode with report:
     ```bash
     npm run test_report
+
+## License
+
+This project is licensed under the ISC License.
