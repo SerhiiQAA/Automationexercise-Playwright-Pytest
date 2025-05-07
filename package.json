@@ -1,0 +1,16 @@
+{
+  "name": "playwright---pytest-automationexercise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "pytest",
+    "test_report": "pytest --html=report.html --css=dark-theme.css --self-contained-html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
