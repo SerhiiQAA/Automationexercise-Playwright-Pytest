@@ -1,2 +1,6 @@
-pytest
-playwright
+pytest==7.3.1
+pytest-playwright==0.2.0
+pytest-html==3.1.1
+allure-pytest==2.9.45
+playwright==1.29.0
+faker==18.1.0
