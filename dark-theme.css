@@ -1,10 +1,9 @@
 /* dark-theme.css */
 
-/* Збільшуємо шрифти в 3 рази */
 body {
     background-color: #121212;
     color: #ffffff;
-    font-size: 18px; /* Збільшення шрифта на основній сторінці */
+    font-size: 18px; 
 }
 
 .container {
@@ -13,22 +12,22 @@ body {
 
 h1, h2, h3, h4 {
     color: #ffffff;
-    font-size: 3em; /* Збільшення шрифтів заголовків */
+    font-size: 3em; 
 }
 
 table {
     border: 1px solid #ffffff;
-    font-size: 18px; /* Збільшення шрифтів в таблицях */
+    font-size: 18px; 
 }
 
 table th, table td {
     color: #ffffff;
-    font-size: 18px; /* Збільшення шрифтів в таблицях */
+    font-size: 18px; 
 }
 
 a {
     color: #bb86fc;
-    font-size: 18px; /* Збільшення шрифтів для посилань */
+    font-size: 18px;
 }
 
 a:hover {
@@ -36,5 +35,5 @@ a:hover {
 }
 
 pre {
-    font-size: 18px; /* Збільшення шрифтів для кодових блоків */
+    font-size: 18px; 
 }
