@@ -3,6 +3,7 @@ from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from playwright.sync_api import expect
 from faker import Faker
+from utils.take_screenshot import take_screenshot
 
 fake = Faker()
 
@@ -36,6 +37,7 @@ def test_signup_with_existing_email_shows_error(base_url, browser):
 
     # 8. Verify that the error message 'Email Address already exist!' is visible
     expect(login.signup_form_msg).to_contain_text("Email Address already exist!")
+    take_screenshot(page, "Email Address already exist!")  
 
     # Close the page
     page.close()

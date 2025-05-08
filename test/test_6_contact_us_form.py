@@ -3,6 +3,7 @@ from pages.contact_us_page import ContactUsPage
 from faker import Faker
 import os
 from playwright.sync_api import expect
+from utils.take_screenshot import take_screenshot
 
 fake = Faker()
 
@@ -42,6 +43,7 @@ def test_contact_us_form(base_url, browser):
 
     # 10. Verify success message 'Success! Your details have been submitted successfully.' is visible
     expect(contact.success_msg).to_contain_text("Success! Your details have been submitted successfully")
+    take_screenshot(page, "Success! Your details have been submitted successfully")
 
     # 11. Click 'Home' button and verify that landed to home page successfully
     contact.click_home_button()

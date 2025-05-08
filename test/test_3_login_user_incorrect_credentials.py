@@ -2,6 +2,7 @@ from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from playwright.sync_api import expect
 from faker import Faker
+from utils.take_screenshot import take_screenshot
 
 fake = Faker()
 
@@ -34,5 +35,6 @@ def test_login_with_incorrect_credentials(base_url, browser):
     # 8. Verify error 'Your email or password is incorrect!' is visible
     expect(login.login_form_msg).to_be_visible()
     expect(login.login_form_msg).to_have_text("Your email or password is incorrect!")
+    take_screenshot(page, "Your email or password is incorrect!")  
 
     page.close()

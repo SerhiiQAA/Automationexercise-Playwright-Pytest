@@ -2,6 +2,7 @@ from pages.home_page import HomePage
 from pages.products_page import ProductsPage
 from pages.product_detail_page import ProductDetailPage
 from playwright.sync_api import expect
+from utils.take_screenshot import take_screenshot
 
 def test_verify_all_products_and_product_detail_page(base_url, browser):
     page = browser.new_page()
@@ -40,5 +41,6 @@ def test_verify_all_products_and_product_detail_page(base_url, browser):
         product_detail.condition,
         product_detail.brand
     ])
+    take_screenshot(page, "Verify that detail detail is visible")
 
     page.close()

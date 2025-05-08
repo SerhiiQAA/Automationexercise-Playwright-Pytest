@@ -2,6 +2,7 @@ from helpers.user_factory import create_test_user
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from playwright.sync_api import expect
+from utils.take_screenshot import take_screenshot
 
 def test_login_user_and_logout(base_url, browser):
     page = browser.new_page()
@@ -37,6 +38,7 @@ def test_login_user_and_logout(base_url, browser):
 
     # 10. Verify that user is navigated to login page
     expect(login.login_form_title).to_contain_text("Login to your account")
+    take_screenshot(page, "Login to your account")  
 
     page.close()
 

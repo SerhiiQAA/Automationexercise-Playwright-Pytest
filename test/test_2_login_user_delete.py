@@ -3,6 +3,7 @@ from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from pages.register_page import RegisterPage
 from playwright.sync_api import expect
+from utils.take_screenshot import take_screenshot
 
 def test_login_user_with_correct_credentials(base_url, browser):
     page = browser.new_page()
@@ -33,6 +34,7 @@ def test_login_user_with_correct_credentials(base_url, browser):
 
     # 8. Verify that 'Logged in as username' is visible
     expect(login.logged_in_as).to_contain_text(user["name"])
+    take_screenshot(page, "Logged in as username")  
 
     # 9. Click 'Delete Account' button
     login.delete_account_btn.click()

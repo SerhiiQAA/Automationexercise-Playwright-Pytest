@@ -3,6 +3,7 @@ from pages.login_page import LoginPage
 from pages.register_page import RegisterPage
 from playwright.sync_api import expect
 from faker import Faker
+from utils.take_screenshot import take_screenshot
 
 fake = Faker()
 
@@ -64,6 +65,7 @@ def test_register_user(base_url, browser):
 
     # 14. Verify 'ACCOUNT CREATED!' is visible
     expect(register.account_msg.nth(0)).to_contain_text("Account Created!")
+    take_screenshot(page, "Account Created!")
 
     # 15. Click 'Continue' button
     register.continue_btn.click()
@@ -77,6 +79,8 @@ def test_register_user(base_url, browser):
 
     # 18. Verify 'ACCOUNT DELETED!' is visible and click 'Continue'
     expect(register.account_msg.nth(0)).to_contain_text("Account Deleted!")
+    take_screenshot(page, "Account Deleted!")
+
     register.continue_btn.click()
 
     page.close()

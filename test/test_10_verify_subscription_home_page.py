@@ -1,6 +1,7 @@
 from pages.home_page import HomePage
 from playwright.sync_api import expect
 from faker import Faker
+from utils.take_screenshot import take_screenshot
 
 def test_verify_subscription_home_page(base_url, browser):
     fake = Faker()
@@ -26,5 +27,6 @@ def test_verify_subscription_home_page(base_url, browser):
 
     # 7. Verify success message 'You have been successfully subscribed!' is visible
     expect(home.subscription_success_message).to_contain_text("You have been successfully subscribed!")
+    take_screenshot(page, "You have been successfully subscribed!")
 
     page.close()

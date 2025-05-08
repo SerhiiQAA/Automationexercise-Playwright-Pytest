@@ -1,6 +1,7 @@
 from pages.home_page import HomePage
 from pages.test_cases_page import TCPage
 from playwright.sync_api import expect
+from utils.take_screenshot import take_screenshot
 
 def test_verify_test_cases_page(base_url, browser):
     page = browser.new_page()
@@ -19,5 +20,6 @@ def test_verify_test_cases_page(base_url, browser):
     # 5. Verify user is navigated to test cases page successfully
     assert test_cases.url_contains("/test_cases")
     expect(test_cases.title).to_contain_text("Test Cases")
+    take_screenshot(page, "Test Cases")
 
     page.close()

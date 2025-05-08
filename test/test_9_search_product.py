@@ -1,6 +1,7 @@
 from pages.home_page import HomePage
 from pages.products_page import ProductsPage
 from playwright.sync_api import expect
+from utils.take_screenshot import take_screenshot
 
 def test_search_product(base_url, browser):
     page = browser.new_page()
@@ -31,5 +32,6 @@ def test_search_product(base_url, browser):
     search_term = "jeans"
     items = products.searched_product_items.all_text_contents()
     assert all("jeans" in item.lower() for item in products.searched_product_items.all_text_contents())
-
+    take_screenshot(page, "Before Creating Account")
+    
     page.close()
