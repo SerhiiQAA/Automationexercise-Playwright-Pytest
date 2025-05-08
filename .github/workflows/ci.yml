@@ -56,24 +56,24 @@ jobs:
           publish_dir: docs
           publish_branch: gh-pages
 
-      - name: Report Status to Slack
+      - name: Report to Slack
         if: always()
         uses: ravsamhq/notify-slack-action@v1
         with:
           status: ${{ job.status }}
           notify_when: "success,failure"
           message_format: |
-            *GitHub Actions Report*
-            Repository: ${{ github.repository }}
-            Workflow: ${{ github.workflow }}
-            Job: ${{ github.job }}
-            Status: ${{ job.status }}
-            Run: ${{ github.run_number }}
-            Report: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
+            🧪 GitHub Actions CI Report
+            📦 Repository: ${{ github.repository }}
+            ⚙️ Workflow: ${{ github.workflow }}
+            🧩 Job: ${{ github.job }}
+            📊 Status: ${{ job.status }}
+            🏃‍♂️ Run: ${{ github.run_number }}
+            🔗 Report: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.ACTION_MONITORING_SLACK }}
 
-      - name: Notify Telegram
+      - name: Report to Telegram
         if: always()  # щоб надсилалося навіть якщо тести не пройшли
         uses: appleboy/telegram-action@master
         with:
@@ -85,6 +85,7 @@ jobs:
             ⚙️ Workflow: ${{ github.workflow }}
             🧩 Job: ${{ github.job }}
             📊 Status: ${{ job.status }}
+            🏃‍♂️ Run: ${{ github.run_number }}
             🔗 Report: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
   
 
