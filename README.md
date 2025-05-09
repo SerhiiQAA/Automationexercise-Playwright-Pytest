@@ -62,9 +62,9 @@ Additionally, this project includes integration with **Slack** to receive notifi
 
 All results are stored in allure-results, allowing later report generation.
 
-## ⚡ Parallel Test Execution
+## 🔥 Parallel Test Execution
 
-Before running parallel tests, ensure pytest-xdist is installed:
+- Before running parallel tests, ensure pytest-xdist is installed:
     ```bash
     pip install pytest-xdist
 
