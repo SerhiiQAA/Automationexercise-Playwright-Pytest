@@ -26,6 +26,16 @@ Additionally, this project includes integration with **Slack** to receive notifi
     ```bash
     pip install -r requirements.txt
 
+4. Install Playwright browsers:
+    ```bash
+    python3 -m playwright install
+    python3 -m playwright install chromium firefox webkit
+
+5. Verify browser installation:
+    ```bash
+    python3 -m playwright install --check
+
+
 ## 🚀 Running Tests
 - Running tests in headless mode:
     ```bash
@@ -47,7 +57,8 @@ Additionally, this project includes integration with **Slack** to receive notifi
     ```bash
     npm run test_report
 
-## Running Tests in Specific Browsers
+## 🌐 Running Tests in Specific Browsers
+
 - Run tests in Chromium:
     ```bash
     npm run test_chromium
@@ -64,7 +75,7 @@ All results are stored in allure-results, allowing later report generation.
 
 ## 🔥 Parallel Test Execution
 
-- Before running parallel tests, ensure pytest-xdist is installed:
+- 💡 Before running parallel tests, ensure pytest-xdist is installed:
     ```bash
     pip install pytest-xdist
 

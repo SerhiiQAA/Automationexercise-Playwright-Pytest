@@ -1,6 +1,8 @@
-pytest==7.3.1
-pytest-playwright==0.2.0
-pytest-html==3.1.1
-allure-pytest==2.9.45
-playwright==1.29.0
-faker==18.1.0
+pytest==8.3.3
+pytest-playwright==0.5.2
+pytest-xdist==3.6.1
+pytest-html==4.1.1
+pytest-metadata==3.1.1
+pytest-base-url==2.1.0
+allure-pytest==2.14.2
+Faker==37.1.0
