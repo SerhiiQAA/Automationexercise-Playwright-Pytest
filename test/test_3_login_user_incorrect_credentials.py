@@ -17,31 +17,31 @@ def test_login_with_incorrect_credentials(base_url, browser):
     wrong_email = fake.email()
     wrong_password = fake.password()
 
-    with allure.step("1. Navigate to the correct URL"):
+    with allure.step("1-2. Navigate to the home page"):
         home.navigate()
         take_screenshot(page, "Navigated to Home Page")
 
-    with allure.step("2. Verify that the home page is visible"):
+    with allure.step("3. Verify that the home page is visible"):
         assert home.is_home_page_visible()
         take_screenshot(page, "Home Page Visible")
 
-    with allure.step("3. Click 'Signup / Login' button"):
+    with allure.step("4. Click 'Signup / Login' button"):
         home.click_signup_login()
         allure.attach(page.screenshot(), name="Click Signup/Login", attachment_type=allure.attachment_type.PNG)
 
-    with allure.step("4. Verify that 'Login to your account' is visible"):
+    with allure.step("5. Verify that 'Login to your account' is visible"):
         expect(login.login_form_title).to_contain_text("Login to your account")
         take_screenshot(page, "Login Form Visible")
 
-    with allure.step("5. Enter incorrect email address and password"):
+    with allure.step("6. Enter incorrect email address and password"):
         login.fill_login_form(wrong_email, wrong_password)
         take_screenshot(page, "Filled Incorrect Login Form")
 
-    with allure.step("6. Click 'Login' button"):
+    with allure.step("7. Click 'Login' button"):
         login.login_button.click()
         allure.attach(page.screenshot(), name="Login Click", attachment_type=allure.attachment_type.PNG)
 
-    with allure.step("7. Verify error 'Your email or password is incorrect!' is visible"):
+    with allure.step("8. Verify error 'Your email or password is incorrect!' is visible"):
         expect(login.login_form_msg).to_be_visible()
         expect(login.login_form_msg).to_have_text("Your email or password is incorrect!")
         take_screenshot(page, "Login Error Message")

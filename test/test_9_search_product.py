@@ -11,33 +11,33 @@ def test_search_product(base_url, browser):
     home = HomePage(page, base_url)
     products = ProductsPage(page)
 
-    with allure.step("1. Navigate to the correct URL"):
+    with allure.step("1-2. Navigate to the home page"):
         home.navigate()
         take_screenshot(page, "Navigated to Home Page")
 
-    with allure.step("2. Verify that the home page is visible"):
+    with allure.step("3. Verify that the home page is visible"):
         assert home.is_home_page_visible()
         take_screenshot(page, "Home Page Visible")
 
-    with allure.step("3. Click 'Products' button"):
+    with allure.step("4. Click 'Products' button"):
         home.click_products()
         allure.attach(page.screenshot(), name="Click Products", attachment_type=allure.attachment_type.PNG)
 
-    with allure.step("4. Verify user is navigated to ALL PRODUCTS page"):
+    with allure.step("5. Verify user is navigated to ALL PRODUCTS page"):
         assert products.url_contains("/products")
         expect(products.searched_products_title).to_contain_text("All Products")
         take_screenshot(page, "All Products Page Visible")
 
-    with allure.step("5. Enter product name 'jeans' in search input and click search button"):
+    with allure.step("6. Enter product name 'jeans' in search input and click search button"):
         products.search_input.fill("jeans")
         products.search_button.click()
         take_screenshot(page, "Product Search Input")
 
-    with allure.step("6. Verify 'SEARCHED PRODUCTS' title is visible"):
+    with allure.step("7. Verify 'SEARCHED PRODUCTS' title is visible"):
         expect(products.searched_products_title).to_contain_text("Searched Products")
         take_screenshot(page, "Search Results Visible")
 
-    with allure.step("7. Verify all products related to the search term 'jeans' are visible"):
+    with allure.step("8. Verify all products related to the search term 'jeans' are visible"):
         search_term = "jeans"
         items = products.searched_product_items.all_text_contents()
         assert all("jeans" in item.lower() for item in items)

@@ -13,36 +13,36 @@ def test_verify_all_products_and_product_detail_page(base_url, browser):
     products = ProductsPage(page)
     product_detail = ProductDetailPage(page)
 
-    with allure.step("1. Navigate to the correct URL"):
+    with allure.step("1-2. Navigate to the home page"):
         home.navigate()
         take_screenshot(page, "Navigated to Home Page")
 
-    with allure.step("2. Verify that the home page is visible"):
+    with allure.step("3. Verify that the home page is visible"):
         assert home.is_home_page_visible()
         take_screenshot(page, "Home Page Visible")
 
-    with allure.step("3. Click 'Products' button"):
+    with allure.step("4. Click 'Products' button"):
         home.products_button.click()
         allure.attach(page.screenshot(), name="Click Products", attachment_type=allure.attachment_type.PNG)
 
-    with allure.step("4. Verify user is navigated to ALL PRODUCTS page successfully"):
+    with allure.step("5. Verify user is navigated to ALL PRODUCTS page successfully"):
         assert products.url_contains("/products")
         take_screenshot(page, "All Products Page Visible")
 
-    with allure.step("5. Verify that the products list is visible"):
+    with allure.step("6. Verify that the products list is visible"):
         expect(products.products_list).to_be_visible()
         assert products.product_card.count() > 1
         take_screenshot(page, "Products List Visible")
 
-    with allure.step("6. Click 'View Product' of the first product"):
+    with allure.step("7. Click 'View Product' of the first product"):
         products.view_first_product_button.click()
         allure.attach(page.screenshot(), name="View First Product Click", attachment_type=allure.attachment_type.PNG)
 
-    with allure.step("7. Verify user is navigated to the product detail page"):
+    with allure.step("8. Verify user is navigated to the product detail page"):
         assert products.url_contains("/product_details")
         take_screenshot(page, "Product Detail Page Visible")
 
-    with allure.step("8. Verify product details are visible: name, category, price, availability, condition, brand"):
+    with allure.step("9. Verify product details are visible: name, category, price, availability, condition, brand"):
         product_detail.check_elements_visible([
             product_detail.product_name,
             product_detail.category,

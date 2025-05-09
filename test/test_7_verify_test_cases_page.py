@@ -11,19 +11,19 @@ def test_verify_test_cases_page(base_url, browser):
     home = HomePage(page, base_url)
     test_cases = TCPage(page)
 
-    with allure.step("1. Navigate to the correct URL"):
+    with allure.step("1-2. Navigate to the correct URL"):
         home.navigate()
         take_screenshot(page, "Navigated to Home Page")
 
-    with allure.step("2. Verify that the home page is visible"):
+    with allure.step("3. Verify that the home page is visible"):
         assert home.is_home_page_visible()
         take_screenshot(page, "Home Page Visible")
 
-    with allure.step("3. Click 'Test Cases' button"):
+    with allure.step("4. Click 'Test Cases' button"):
         home.click_test_cases()
         allure.attach(page.screenshot(), name="Click Test Cases", attachment_type=allure.attachment_type.PNG)
 
-    with allure.step("4. Verify user is navigated to the test cases page"):
+    with allure.step("5. Verify user is navigated to the test cases page"):
         assert test_cases.url_contains("/test_cases")
         expect(test_cases.title).to_contain_text("Test Cases")
         take_screenshot(page, "Test Cases Page Visible")
