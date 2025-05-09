@@ -8,10 +8,16 @@
   },
   "scripts": {
     "test": "pytest",
-    "test_report": "pytest --html=report.html --css=dark-theme.css --self-contained-html",
     "test_allure": "pytest --alluredir=allure-results",
+    "test_chromium": "pytest --playwright_browser=chromium --alluredir=allure-results",
+    "test_firefox": "pytest --playwright_browser=firefox --alluredir=allure-results",
+    "test_webkit": "pytest --playwright_browser=webkit --alluredir=allure-results",
+    "test_parallel_chromium": "pytest -n 2 --playwright_browser=chromium --alluredir=allure-results",
+    "test_parallel_firefox": "pytest -n 2 --playwright_browser=firefox --alluredir=allure-results",
+    "test_parallel_webkit": "pytest -n 2 --playwright_browser=webkit --alluredir=allure-results",
     "report_allure": "allure generate allure-results -o allure-report --clean && xdg-open allure-report/index.html",
-    "serve_allure": "allure serve allure-results"
+    "serve_allure": "allure serve allure-results",
+    "test_report_html": "pytest --html=report.html --css=dark-theme.css --self-contained-html"
   },
   "keywords": [],
   "author": "",

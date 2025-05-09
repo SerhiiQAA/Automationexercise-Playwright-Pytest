@@ -47,6 +47,41 @@ Additionally, this project includes integration with **Slack** to receive notifi
     ```bash
     npm run test_report
 
+## Running Tests in Specific Browsers
+- Run tests in Chromium:
+    ```bash
+    npm run test_chromium
+
+- Run tests in Firefox:
+    ```bash
+    npm run test_firefox
+
+- Run tests in WebKit:
+    ```bash
+    npm run test_webkit
+
+All results are stored in allure-results, allowing later report generation.
+
+## ⚡ Parallel Test Execution
+
+Before running parallel tests, ensure pytest-xdist is installed:
+    ```bash
+    pip install pytest-xdist
+
+- Run Chromium tests in 2 parallel threads::
+    ```bash
+    npm run test_parallel_chromium
+
+- Run Firefox tests in 2 parallel threads:
+    ```bash
+    npm run test_parallel_firefox
+
+- Run WebKit tests in 2 parallel threads:
+    ```bash
+    npm run test_parallel_webkit
+
+The number of parallel threads (-n X) can be adjusted based on machine performance.
+
 ## 🏃‍♂️ Continuous Integration (CI) and Slack Notifications
 
 This project uses GitHub Actions to run tests automatically on every push or pull request to the master branch.
