@@ -19,6 +19,7 @@ def test_login_user_and_logout(base_url, browser):
 
     with allure.step("2. Navigate to the home page"):
         page.goto(base_url)
+        page.wait_for_load_state("networkidle")
         take_screenshot(page, "Navigated to Home Page")
 
     with allure.step("3. Verify that the home page is visible"):
