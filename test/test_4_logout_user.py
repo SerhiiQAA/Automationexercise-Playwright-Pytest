@@ -1,9 +1,12 @@
+import allure
 from helpers.user_factory import create_test_user
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
 from playwright.sync_api import expect
 from utils.take_screenshot import take_screenshot
 
+@allure.title("User Login and Logout Test")
+@allure.description("Test for logging in with correct credentials and verifying logout functionality")
 def test_login_user_and_logout(base_url, browser):
     page = browser.new_page()
     user = create_test_user(page, base_url)
@@ -11,36 +14,92 @@ def test_login_user_and_logout(base_url, browser):
     home = HomePage(page, base_url)
     login = LoginPage(page)
 
-    # 1-2. Logout
-    login.logout_btn.click()
+    with allure.step("1. Logout"):
+        login.logout_btn.click()
+        take_screenshot(page, "Logged Out")
 
-    # 3. Verify that home page is visible successfully
-    assert home.is_home_page_visible()
+    with allure.step("2. Verify that the home page is visible"):
+        assert home.is_home_page_visible()
+        take_screenshot(page, "Home Page Visible")
 
-    # 4. Click on 'Signup / Login' button
-    home.click_signup_login()
+    with allure.step("3. Click 'Signup / Login' button"):
+        home.click_signup_login()
+        allure.attach(page.screenshot(), name="Click Signup/Login", attachment_type=allure.attachment_type.PNG)
 
-    # 5. Verify 'Login to your account' is visible
-    expect(login.login_form_title).to_contain_text("Login to your account")
+    with allure.step("4. Verify that 'Login to your account' is visible"):
+        expect(login.login_form_title).to_contain_text("Login to your account")
+        take_screenshot(page, "Login Form Visible")
 
-    # 6. Enter correct email address and password
-    login.fill_login_form(user["email"], user["password"])
+    with allure.step("5. Enter correct email address and password"):
+        login.fill_login_form(user["email"], user["password"])
+        take_screenshot(page, "Filled Login Form")
 
-    # 7. Click 'login' button
-    login.login_button.click()
+    with allure.step("6. Click 'Login' button"):
+        login.login_button.click()
+        allure.attach(page.screenshot(), name="Login Click", attachment_type=allure.attachment_type.PNG)
 
-    # 8. Verify that 'Logged in as username' is visible
-    expect(login.logged_in_as).to_be_visible()
-    expect(login.logged_in_as).to_contain_text(user["name"])
+    with allure.step("7. Verify that 'Logged in as username' is visible"):
+        expect(login.logged_in_as).to_be_visible()
+        expect(login.logged_in_as).to_contain_text(user["name"])
+        take_screenshot(page, "Logged in as User")
 
-    # 9. Click 'Logout' button
-    login.logout_btn.click()
+    with allure.step("8. Click 'Logout' button"):
+        login.logout_btn.click()
+        take_screenshot(page, "Logout Click")
 
-    # 10. Verify that user is navigated to login page
-    expect(login.login_form_title).to_contain_text("Login to your account")
-    take_screenshot(page, "Login to your account")  
+    with allure.step("9. Verify that user is navigated to the login page"):
+        expect(login.login_form_title).to_contain_text("Login to your account")
+        take_screenshot(page, "Login Page After Logout")
 
     page.close()
+
+
+
+
+
+# from helpers.user_factory import create_test_user
+# from pages.home_page import HomePage
+# from pages.login_page import LoginPage
+# from playwright.sync_api import expect
+# from utils.take_screenshot import take_screenshot
+
+# def test_login_user_and_logout(base_url, browser):
+#     page = browser.new_page()
+#     user = create_test_user(page, base_url)
+
+#     home = HomePage(page, base_url)
+#     login = LoginPage(page)
+
+#     # 1-2. Logout
+#     login.logout_btn.click()
+
+#     # 3. Verify that home page is visible successfully
+#     assert home.is_home_page_visible()
+
+#     # 4. Click on 'Signup / Login' button
+#     home.click_signup_login()
+
+#     # 5. Verify 'Login to your account' is visible
+#     expect(login.login_form_title).to_contain_text("Login to your account")
+
+#     # 6. Enter correct email address and password
+#     login.fill_login_form(user["email"], user["password"])
+
+#     # 7. Click 'login' button
+#     login.login_button.click()
+
+#     # 8. Verify that 'Logged in as username' is visible
+#     expect(login.logged_in_as).to_be_visible()
+#     expect(login.logged_in_as).to_contain_text(user["name"])
+
+#     # 9. Click 'Logout' button
+#     login.logout_btn.click()
+
+#     # 10. Verify that user is navigated to login page
+#     expect(login.login_form_title).to_contain_text("Login to your account")
+#     take_screenshot(page, "Login to your account")  
+
+#     page.close()
 
 
 
