@@ -111,6 +111,7 @@ def test_register_user(base_url, browser):
 # from faker import Faker
 # from utils.take_screenshot import take_screenshot
 
+
 # fake = Faker()
 
 # def test_register_user(base_url, browser):
