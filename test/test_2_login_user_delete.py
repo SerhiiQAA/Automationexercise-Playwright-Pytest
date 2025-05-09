@@ -16,9 +16,8 @@ def test_login_user_with_correct_credentials(base_url, browser):
     login = LoginPage(page)
     register = RegisterPage(page)
 
-    with allure.step("1. Log out after registration"):
+    with allure.step("1. Preparing user data"):
         login.logout_btn.click()
-        take_screenshot(page, "Logged Out")
 
     with allure.step("2. Navigate to the home page"):
         page.goto(base_url)

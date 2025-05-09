@@ -19,9 +19,8 @@ def test_signup_with_existing_email_shows_error(base_url, browser):
     home = HomePage(page, base_url)
     login = LoginPage(page)
 
-    with allure.step("1. Logout from the existing account"):
+    with allure.step("1. Preparing user data"):
         login.logout_btn.click()
-        take_screenshot(page, "Logged Out")
 
     with allure.step("2. Navigate to the home page"):
         page.goto(base_url)

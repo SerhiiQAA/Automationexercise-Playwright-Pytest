@@ -14,9 +14,8 @@ def test_login_user_and_logout(base_url, browser):
     home = HomePage(page, base_url)
     login = LoginPage(page)
 
-    with allure.step("1. Logout"):
+    with allure.step("1. Preparing user data"):
         login.logout_btn.click()
-        take_screenshot(page, "Logged Out")
 
     with allure.step("2. Verify that the home page is visible"):
         assert home.is_home_page_visible()
